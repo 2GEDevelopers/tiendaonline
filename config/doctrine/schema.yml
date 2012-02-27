@@ -1,0 +1,159 @@
+Usuario:
+  actAs: { Timestampable: ~ }
+  tableName: usuario 
+  columns:
+     id:
+      type: integer(11)
+      primary: true
+      autoincrement: true
+     email:
+       type: string(255)
+       unique: true
+       notnull: true
+     password:
+       type: string(255)
+       notnull: true
+     estaActivo:
+       type: integer(1)
+       notnull: true
+       default: 1
+     nombre:
+       type: string(255)
+       notnull: false
+     apellido:
+       type: string(255)
+       notnull: false
+     telefono:
+       type: string(50)
+       notnull: false
+     fecha_nacimiento:
+       type: date
+       notnull: false
+     sexo:
+       type: string(1)
+       notnull: false
+     alerta_email_diaro:
+       type: integer(1)
+       notnull: true
+       default: 1
+     alerta_email_semanal:
+       type: integer(1)
+       notnull: true
+       default: 1
+     alerta_promociones:
+       type: integer(1)
+       notnull: true
+       default: 1
+  relations:
+    Direccion:
+      class: Direccion
+      local: id
+      foreign: usuario_id
+      foreignAlias: UsuarioTieneDirecciones
+      type: many
+    Apadrinado:
+      class: Apadrinado
+      local: id
+      foreign: usuario_id
+      foreignAlias: UsuarioTieneApadrinados
+      type: many
+      
+Direccion:
+   actAs: { Timestampable: ~ }
+   tableName: direccion 
+   columns:
+     id:
+      type: integer(11)
+      primary: true
+      autoincrement: true
+     usuario_id:
+       type: integer(11)
+       notnull: true
+     nombre_destinatario:
+      type: string(255)
+      notnull: true
+     estado_id: 
+       type: integer(11)
+       notnull: true 
+     ciudad_id:
+       type: integer(11)
+       notnull: true
+     descripcion:
+       type: integer(255)
+       notnull: true
+   relations:
+     Usuario:
+       class: Usuario
+       local: usuario_id
+       foreign: id
+       foreignAlias: DireccionTieneUnUsuario
+       type: one
+     Estado:
+       class: Estado
+       local: estado_id
+       foreign: id
+       foreignAlias: DireccionTieneUnEstado
+       type: one
+     Ciudad:
+       class: Ciudad
+       local: ciudad_id
+       foreign: id
+       foreignAlias: DireccionTieneUnaCiudad
+       type: one
+       
+Estado:
+  actAs: { Timestampable: ~ }
+  tableName: estado 
+  columns:
+    id:
+      type: integer(11)
+      primary: true
+      autoincrement: true
+    nombre:
+      type: string(255)
+      notnull: true
+  relations:
+    Direccion:
+      class: Direccion
+      local: id
+      foreign: estado_id
+      foreignAlias: EstadoTieneDirecciones
+      type: many
+      
+Ciudad:
+  actAs: { Timestampable: ~ }
+  tableName: ciudad
+  columns:
+    id:
+      type: integer(11)
+      primary: true
+      autoincrement: true
+    nombre:
+      type: string(255)
+      notnull: true
+  relations:
+    Direccion:
+      class: Direccion
+      local: id
+      foreign: ciudad_id
+      foreignAlias: CiudadTieneDirecciones
+      type: many
+
+Apadrinado:
+  actAs: { Timestampable: ~ }
+  tableName: apadrinado
+  columns:
+    usuario_id:
+      type: integer(11)
+      notnull: true
+    email_apadrinado:
+      type: string(255)
+      notnull: true
+  relations:
+    Usuario:
+       class: Usuario
+       local: usuario_id
+       foreign: id
+       foreignAlias: ApadrinadoTieneUnUsuario
+       type: one
+    
