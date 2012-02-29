@@ -7,4 +7,4 @@ all:
     param:
       dsn:      mysql:host=localhost;dbname=tiendaonline
       username: root
-      password: 
+      password: 123456
