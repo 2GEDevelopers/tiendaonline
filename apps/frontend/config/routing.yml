@@ -5,3 +5,4 @@
 homepage:
   url:   /
   param: { module: principal, action: index }
+
