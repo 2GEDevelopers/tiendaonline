@@ -10,7 +10,7 @@ Usuario:
        type: string(255)
        unique: true
        notnull: true
-     password:
+     contrasena:
        type: string(255)
        notnull: true
      estaActivo:
@@ -51,12 +51,14 @@ Usuario:
       foreign: usuario_id
       foreignAlias: UsuarioTieneDirecciones
       type: many
+      onDelete: Cascade
     Apadrinado:
       class: Apadrinado
       local: id
       foreign: usuario_id
       foreignAlias: UsuarioTieneApadrinados
       type: many
+      onDelete: Cascade
       
 Direccion:
    actAs: { Timestampable: ~ }
@@ -149,6 +151,10 @@ Apadrinado:
     email_apadrinado:
       type: string(255)
       notnull: true
+    estado:
+      type: integer(1)
+      notnull: true
+      default: 0
   relations:
     Usuario:
        class: Usuario
