@@ -18,12 +18,12 @@ Marca:
        type: string(255)
        notnull: false
   relations:
-    Direccion:
-      class: Direccion
+    Menu:
+      class: Menu
       local: id
-      foreign: usuario_id
-      foreignAlias: UsuarioTieneDirecciones
-      type: many
+      foreign: marca_id
+      foreignAlias: MarcaOneMenu
+      type: one
       
 Categoria:
   actAs: { Timestampable: ~ }
@@ -37,6 +37,12 @@ Categoria:
        type: string(255)
        notnull: false
   relations:
+    Subcategoria:
+      class: Subcategoria
+      local: id
+      foreign: subcategoria_id
+      foreignAlias: CategoriaOneSubcategoria
+      type: one
       
 Subcategoria:
   actAs: { Timestampable: ~ }
@@ -49,7 +55,16 @@ Subcategoria:
      nombre:
        type: string(255)
        notnull: false
+     categoria_id:
+       type: integer(11)
+       notnull: true
   relations:
+    Subcategoria:
+      class: Subcategoria
+      local: categoria_id
+      foreign: id
+      foreignAlias: SubcategoriaManyCategoria
+      type: many
 
 Menu:
   actAs: { Timestampable: ~ }
@@ -62,23 +77,13 @@ Menu:
      nombre:
        type: string(255)
        notnull: false
-  relations:
-
-
-MenuMarcas:
-  actAs: { Timestampable: ~ }
-  tableName: menu_tiene_marcas 
-  columns:
-     id:
-       type: integer(11)
-       primary: true
-       autoincrement: true
-     menu_id:
-       type: integer(11)
-       notnull: false
      marca_id:
        type: integer(11)
        notnull: false
   relations:
- 
- 
+    Marca:
+      class: Marca
+      local: marca_id
+      foreign: id
+      foreignAlias: MenuManyMarca
+      type: many 
