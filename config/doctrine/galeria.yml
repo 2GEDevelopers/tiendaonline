@@ -17,13 +17,6 @@ Marca:
      logo:
        type: string(255)
        notnull: false
-  relations:
-    Menu:
-      class: Menu
-      local: id
-      foreign: marca_id
-      foreignAlias: MarcaOneMenu
-      type: one
       
 Categoria:
   actAs: { Timestampable: ~ }
@@ -77,13 +70,37 @@ Menu:
      nombre:
        type: string(255)
        notnull: false
+  relations:
+    MenuMarca:
+      class: MenuMarca
+      local: id
+      foreign: menu_id
+      foreignAlias: MenuManyMenuMarca
+      type: many
+
+
+MenuMarca:
+  actAs: { Timestampable: ~ }
+  tableName: menu_tiene_marca 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     menu_id:
+       type: integer(11)
+       notnull: false
      marca_id:
        type: integer(11)
        notnull: false
+     marca:
+       type: string(255)
+       notnull: false
   relations:
-    Marca:
-      class: Marca
-      local: marca_id
+    Menu:
+      class: Menu
+      local: menu_id
       foreign: id
-      foreignAlias: MenuManyMarca
-      type: many 
+      foreignAlias: MenuMarcaManyMenu
+      type: many
+
