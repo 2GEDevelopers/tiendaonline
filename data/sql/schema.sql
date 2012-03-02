@@ -1,0 +1,15 @@
+CREATE TABLE apadrinado (id BIGINT AUTO_INCREMENT, usuario_id BIGINT NOT NULL, email_apadrinado VARCHAR(255) NOT NULL, estado TINYINT DEFAULT 0 NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX usuario_id_idx (usuario_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE categoria (id BIGINT AUTO_INCREMENT, nombre VARCHAR(255), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE ciudad (id BIGINT AUTO_INCREMENT, nombre VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE direccion (id BIGINT AUTO_INCREMENT, usuario_id BIGINT NOT NULL, nombre_destinatario VARCHAR(255) NOT NULL, estado_id BIGINT NOT NULL, ciudad_id BIGINT NOT NULL, descripcion BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX usuario_id_idx (usuario_id), INDEX estado_id_idx (estado_id), INDEX ciudad_id_idx (ciudad_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE estado (id BIGINT AUTO_INCREMENT, nombre VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE marca (id BIGINT AUTO_INCREMENT, nombre VARCHAR(255), banner VARCHAR(255), logo VARCHAR(255), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE menu (id BIGINT AUTO_INCREMENT, nombre VARCHAR(255), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE menu_tiene_marca (id BIGINT AUTO_INCREMENT, menu_id BIGINT, marca_id BIGINT, marca VARCHAR(255), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE menu_tiene_marcas (id BIGINT AUTO_INCREMENT, menu_id BIGINT, marca_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE subcategoria (id BIGINT AUTO_INCREMENT, nombre VARCHAR(255), categoria_id BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE usuario (id BIGINT AUTO_INCREMENT, email VARCHAR(255) NOT NULL UNIQUE, contrasena VARCHAR(255) NOT NULL, estaactivo TINYINT DEFAULT 1 NOT NULL, nombre VARCHAR(255), apellido VARCHAR(255), telefono VARCHAR(50), fecha_nacimiento DATE, sexo VARCHAR(1), alerta_email_diaro TINYINT DEFAULT 1 NOT NULL, alerta_email_semanal TINYINT DEFAULT 1 NOT NULL, alerta_promociones TINYINT DEFAULT 1 NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+ALTER TABLE apadrinado ADD CONSTRAINT apadrinado_usuario_id_usuario_id FOREIGN KEY (usuario_id) REFERENCES usuario(id);
+ALTER TABLE direccion ADD CONSTRAINT direccion_usuario_id_usuario_id FOREIGN KEY (usuario_id) REFERENCES usuario(id);
+ALTER TABLE direccion ADD CONSTRAINT direccion_estado_id_estado_id FOREIGN KEY (estado_id) REFERENCES estado(id);
+ALTER TABLE direccion ADD CONSTRAINT direccion_ciudad_id_ciudad_id FOREIGN KEY (ciudad_id) REFERENCES ciudad(id);

@@ -1,0 +1,49 @@
+
+Menu:
+<?php for ($i = 1; $i <= 6; $i++): ?>
+  menu_<?php echo $i ?>:
+    id: <?php echo $i."\n" ?>
+    nombre: Opcion_<?php echo $i."\n" ?>    
+<?php endfor ?>
+
+Marca:
+<?php for ($i = 1; $i <= 10; $i++): ?>
+  marca_<?php echo $i ?>:
+    id: <?php echo $i."\n" ?>
+    nombre: Opcion_<?php echo $i."\n" ?> 
+    banner: banner_<?php echo $i."\n" ?>
+    logo: logo_<?php echo $i."\n" ?>
+<?php endfor ?>
+
+MenuMarca:
+  menu_marca_1:
+    id: 1
+    menu_id: 1
+    marca_id: 1
+    marca: marca_1
+  menu_marca_2:
+    id: 2
+    menu_id: 1
+    marca_id: 2
+    marca: marca_2
+  menu_marca_3:
+    id: 3
+    menu_id: 1
+    marca_id: 3
+    marca: marca_3
+  menu_marca_4:
+    id: 4
+    menu_id: 2
+    marca_id: 1
+    marca: marca_1
+  menu_marca_5:
+    id: 5
+    menu_id: 2
+    marca_id: 2
+    marca: marca_2
+  menu_marca_6:
+    id: 6
+    menu_id: 3
+    marca_id: 3
+    marca: marca_3
+    

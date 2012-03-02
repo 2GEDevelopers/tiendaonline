@@ -162,4 +162,5 @@ Apadrinado:
        foreign: id
        foreignAlias: ApadrinadoTieneUnUsuario
        type: one
+
     
