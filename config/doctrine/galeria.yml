@@ -1,0 +1,84 @@
+## YAML Template.
+---
+Marca:
+  actAs: { Timestampable: ~ }
+  tableName: marca 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+     banner:
+       type: string(255)
+       notnull: false
+     logo:
+       type: string(255)
+       notnull: false
+  relations:
+    Direccion:
+      class: Direccion
+      local: id
+      foreign: usuario_id
+      foreignAlias: UsuarioTieneDirecciones
+      type: many
+      
+Categoria:
+  actAs: { Timestampable: ~ }
+  tableName: categoria 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+  relations:
+      
+Subcategoria:
+  actAs: { Timestampable: ~ }
+  tableName: subcategoria 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+  relations:
+
+Menu:
+  actAs: { Timestampable: ~ }
+  tableName: menu 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+  relations:
+
+
+MenuMarcas:
+  actAs: { Timestampable: ~ }
+  tableName: menu_tiene_marcas 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     menu_id:
+       type: integer(11)
+       notnull: false
+     marca_id:
+       type: integer(11)
+       notnull: false
+  relations:
+ 
+ 
