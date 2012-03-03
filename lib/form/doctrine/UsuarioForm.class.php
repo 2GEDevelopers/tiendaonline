@@ -11,14 +11,15 @@
 class UsuarioForm extends BaseUsuarioForm {
 
     public function configure() {
+
         unset($this['updated_at'], $this['created_at']);
 
-        //campos
+//campos
 
         $this->widgetSchema['contrasena'] = new sfWidgetFormInputPassword();
         $this->widgetSchema['emailPadrino'] = new sfWidgetFormInput();
 
-        //validaciones
+//validaciones
 
         $this->validatorSchema['email'] = new sfValidatorEmail(array(),
                         array('required' => $this->mensajesError['obligatorio'],
@@ -33,10 +34,8 @@ class UsuarioForm extends BaseUsuarioForm {
 
 
         $this->validatorSchema->setPostValidator(
-                new sfValidatorDoctrineUnique(array('model' => 'Usuario', 'column' => array('email')), 
+                new sfValidatorDoctrineUnique(array('model' => 'Usuario', 'column' => array('email')),
                         array('invalid' => 'Email ya registrado')));
-
     }
 
 }
-

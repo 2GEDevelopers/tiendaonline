@@ -15,5 +15,4 @@ class BaseForm extends sfFormSymfony
             'obligatorio' => 'Campo Obligatorio',
             'emailInvalido' => 'Email Invalido'
             );
-    
 }
