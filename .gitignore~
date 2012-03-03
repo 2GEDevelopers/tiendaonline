@@ -1,2 +1,12 @@
+
+/nbproject/
+/log/
+/cache/
+/lib/vendor/symfony/
+/lib/form/doctrine/base/
+/lib/model/doctrine/base/
+/data/sql/
+/lib/filter/doctrine/base/
+/config/ProjectConfiguration.class.php
 /nbproject/private/
 

@@ -11,7 +11,7 @@ Usuario:
        unique: true
        notnull: true
      contrasena:
-       type: string(255)
+       type: string
        notnull: true
      estaActivo:
        type: integer(1)

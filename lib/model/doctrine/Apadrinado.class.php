@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -10,6 +11,20 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Apadrinado extends BaseApadrinado
-{
+class Apadrinado extends BaseApadrinado {
+
+    /**
+     * Creat registro padrino - apadrinado
+     * @param type $padrino
+     * @param Apadrinado $apadrinado 
+     */
+    public static function crearUsuarioApdrinado($padrino, $apadrinado) {
+
+        $a = new Apadrinado();
+        $a->setUsuarioId($padrino);
+        $a->setEmailApadrinado($apadrinado);
+        $a->setEstado(1);
+        $a->save();
+    }
+
 }
