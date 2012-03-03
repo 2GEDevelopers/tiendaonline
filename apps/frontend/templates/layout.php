@@ -21,9 +21,7 @@
                     <div class="nav-collapse">
                     <!--     Este menu debe ser impreso dinamicamente                   -->
                         <ul class="nav ">
-                            <li><a href="#"><h3>Categoria-1</h3></a></li>
-                            <li><a href="#"><h3>Categoria-2</h3></a></li>
-                            <li><a href="#"><h3>Categoria-3</h3></a></li>
+                            <?php  include_component('principal', 'menu');  ?>
                         </ul>
                     </div>
                 </div>

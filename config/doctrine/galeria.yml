@@ -1,0 +1,106 @@
+## YAML Template.
+---
+Marca:
+  actAs: { Timestampable: ~ }
+  tableName: marca 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+     banner:
+       type: string(255)
+       notnull: false
+     logo:
+       type: string(255)
+       notnull: false
+      
+Categoria:
+  actAs: { Timestampable: ~ }
+  tableName: categoria 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+  relations:
+    Subcategoria:
+      class: Subcategoria
+      local: id
+      foreign: subcategoria_id
+      foreignAlias: CategoriaOneSubcategoria
+      type: one
+      
+Subcategoria:
+  actAs: { Timestampable: ~ }
+  tableName: subcategoria 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+     categoria_id:
+       type: integer(11)
+       notnull: true
+  relations:
+    Subcategoria:
+      class: Subcategoria
+      local: categoria_id
+      foreign: id
+      foreignAlias: SubcategoriaManyCategoria
+      type: many
+
+Menu:
+  actAs: { Timestampable: ~ }
+  tableName: menu 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     nombre:
+       type: string(255)
+       notnull: false
+  relations:
+    MenuMarca:
+      class: MenuMarca
+      local: id
+      foreign: menu_id
+      foreignAlias: MenuManyMenuMarca
+      type: many
+
+
+MenuMarca:
+  actAs: { Timestampable: ~ }
+  tableName: menu_tiene_marca 
+  columns:
+     id:
+       type: integer(11)
+       primary: true
+       autoincrement: true
+     menu_id:
+       type: integer(11)
+       notnull: false
+     marca_id:
+       type: integer(11)
+       notnull: false
+     marca:
+       type: string(255)
+       notnull: false
+  relations:
+    Menu:
+      class: Menu
+      local: menu_id
+      foreign: id
+      foreignAlias: MenuMarcaManyMenu
+      type: many
+
