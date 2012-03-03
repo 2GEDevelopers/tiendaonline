@@ -10,4 +10,10 @@
  */
 class BaseForm extends sfFormSymfony
 {
+    
+    public $mensajesError = array(
+            'obligatorio' => 'Campo Obligatorio',
+            'emailInvalido' => 'Email Invalido'
+            );
+    
 }

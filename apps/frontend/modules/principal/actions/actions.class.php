@@ -29,19 +29,20 @@ class principalActions extends sfActions {
 
         if ($form->isValid()) {
 
-            //TODO encriptar la contrasena
-            //TODO crear variables de sesion
-            //TODO cambiar el save del usuario al final
-            $usuario = $form->save();
+
+            //TODO edward: crear variables de sesion
+
             $postForm = $request->getParameter('usuario');
-            
-            if (isset($postForm['emailPadrino'])) {
+
+            if ($postForm['emailPadrino']) {
                 //validar que el padrino este registrado
 
                 $padrino = Doctrine_Core::getTable('Usuario')->findOneBy('email', $postForm['emailPadrino']);
 
-                if (count($padrino) > 0) {
-                  
+                if ($padrino) {
+
+                    //salvar al usuario actual
+                    $usuario = $form->save();
                     //verificar si existe la dupla padrino - apadrinado
                     $apadrinados = $padrino->getApadrinado();
 
@@ -57,33 +58,34 @@ class principalActions extends sfActions {
                         }
                         //si existe la dupla padrino-apadrinado actualizarla como efectiva
                         if ($encontrado) {
+                            
                             $apadrinado->setEstado(1);
                             $apadrinado->save();
+                            $this->getUser()->setFlash('200', 'Registro exitoso');
+                            
                         } else {
                             //agregar al usuario recien registrado como apadrinado del usuario que lo recomendo
-                            $apadrinado = new Apadrinado();
-                            $apadrinado->setUsuarioId($padrino->getId());
-                            $apadrinado->setEmailApadrinado($usuario->getEmail());
-                            $apadrinado->setEstado(1);
-                            $apadrinado->save();
+                            Apadrinado::crearUsuarioApdrinado($padrino->getId(), $usuario->getEmail());
+                            $this->getUser()->setFlash('200', 'Registro exitoso');
                         }
                     } else {
 
                         //agregar al usuario recien registrado como apadrinado del usuario que lo recomendo
-                        $apadrinado = new Apadrinado();
-                        $apadrinado->setUsuarioId($padrino->getId());
-                        $apadrinado->setEmailApadrinado($usuario->getEmail());
-                        $apadrinado->setEstado(1);
-                        $apadrinado->save();
+                        Apadrinado::crearUsuarioApdrinado($padrino->getId(), $usuario->getEmail());
+                        $this->getUser()->setFlash('200', 'Registro exitoso');
                     }
                 } else {
-
-                    //TODO error padrino no registrado
+                    //padrino no encontrado
+                    $this->getUser()->setFlash('401', 'Este email no esta registrado');
                 }
+            } else {
+                //No coloco al usuario que lo recomendo
+                //salvar al usuario actual
+                $usuario = $form->save();
+                $this->getUser()->setFlash('200', 'Registro exitoso');
             }
-        } else {
-            //TODO majerar errores del form de registro
         }
     }
+    
 
 }

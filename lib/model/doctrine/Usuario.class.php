@@ -12,4 +12,13 @@
  */
 class Usuario extends BaseUsuario
 {
+    
+    /**
+     * sobreescribiendo el metodo setContrasena para guardar la contrasena cifrada
+     * @param type $contrasena 
+     */
+    public function setContrasena($contrasena) {
+        //set the hashed password
+        $this->_set('contrasena', md5($contrasena));
+    }
 }
