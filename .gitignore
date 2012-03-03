@@ -7,3 +7,5 @@
 /data/sql/
 /lib/filter/doctrine/base/
 /config/ProjectConfiguration.class.php
+/nbproject/private/
+

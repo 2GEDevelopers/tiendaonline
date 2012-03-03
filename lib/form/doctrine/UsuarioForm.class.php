@@ -14,6 +14,7 @@ class UsuarioForm extends BaseUsuarioForm {
         unset($this['updated_at'], $this['created_at']);
 
         //campos
+
         $this->widgetSchema['contrasena'] = new sfWidgetFormInputPassword();
         $this->widgetSchema['emailPadrino'] = new sfWidgetFormInput();
 
@@ -34,6 +35,8 @@ class UsuarioForm extends BaseUsuarioForm {
         $this->validatorSchema->setPostValidator(
                 new sfValidatorDoctrineUnique(array('model' => 'Usuario', 'column' => array('email')), 
                         array('invalid' => 'Email ya registrado')));
+
     }
 
 }
+

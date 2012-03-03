@@ -1,3 +1,4 @@
+
 /nbproject/
 /log/
 /cache/
@@ -6,3 +7,6 @@
 /lib/model/doctrine/base/
 /data/sql/
 /lib/filter/doctrine/base/
+/config/ProjectConfiguration.class.php
+/nbproject/private/
+

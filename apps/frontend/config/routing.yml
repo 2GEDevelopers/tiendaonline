@@ -1,3 +1,4 @@
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
@@ -5,10 +6,11 @@
 homepage:
   url:   /
   param: { module: principal, action: index }
-
+  
 # rutas para el modulo usuario
 
 usuarioBuscarEmail:
   url: /usuario/:email
   param: { module: usuario, action: BuscarEmail }
   #sf_method: [post]
+
